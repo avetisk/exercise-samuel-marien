@@ -1,5 +1,16 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.content {
+  margin: 0 auto;
+}
+
 .screens {
   display: flex;
   border: 1px solid black;
   background-color: #eef0dd;
+  height: 300px;
 }

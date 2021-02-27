@@ -6,17 +6,23 @@ import Screen from './components/Screen';
 import ScreenMinionOne from './components/ScreenMinionOne';
 import ScreenMinionTwo from './components/ScreenMinionTwo';
 import ScreenMinionThree from './components/ScreenMinionThree';
+import Shop from './components/Shop';
 
 function App() {
   return (
-    <div className="container m-5 border border-dark p-5">
+    <div className="content container m-5 border border-dark p-5">
       <header className="App-header text-primary text-center"></header>
-      <div className="screens">
-        <Screen />
-        <div className="minionScreens">
-          <ScreenMinionOne />
-          <ScreenMinionTwo />
-          <ScreenMinionThree />
+      <div className="theMain border border-dark d-flex justify-content-between">
+        <div className="screens">
+          <Screen />
+          <div className="minionScreens">
+            <ScreenMinionOne />
+            <ScreenMinionTwo />
+            <ScreenMinionThree />
+          </div>
+        </div>
+        <div className="shop">
+          <Shop />
         </div>
       </div>
     </div>
