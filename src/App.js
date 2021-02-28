@@ -10,18 +10,20 @@ import Shop from './components/Shop';
 
 function App() {
   return (
-    <div className="content container m-5 border border-dark p-5">
-      <header className="App-header text-primary text-center"></header>
+    <div className="container m-auto border border-dark p-5">
+      <header className="App-header text-primary text-center">Title App</header>
       <div className="theMain border border-dark d-flex justify-content-between">
         <div className="screens">
           <Screen />
           <div className="minionScreens">
+            <h2 className="text-center">Yours Army</h2>
             <ScreenMinionOne />
             <ScreenMinionTwo />
             <ScreenMinionThree />
           </div>
         </div>
         <div className="shop">
+          <h2 className="text-center">Store</h2>
           <Shop />
         </div>
       </div>

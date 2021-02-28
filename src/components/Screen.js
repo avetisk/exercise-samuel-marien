@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { GiWyvern } from 'react-icons/gi';
+import { GiCaveman } from 'react-icons/gi';
 
 const StyledScreen = styled('div')`
   border-radius: 15px 15px 5px 5px;
@@ -24,7 +24,7 @@ const Screen = (props) => {
   return (
     <div>
       <StyledScreen>
-        <GiWyvern
+        <GiCaveman
           style={{
             fontSize: 180,
           }}
