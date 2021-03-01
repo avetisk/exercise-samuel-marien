@@ -7,6 +7,8 @@ import ScreenMinionOne from './components/ScreenMinionOne';
 import ScreenMinionTwo from './components/ScreenMinionTwo';
 import ScreenMinionThree from './components/ScreenMinionThree';
 import Shop from './components/Shop';
+import DpsScreen from './components/DpsScreen';
+import BonusScreen from './components/BonusScreen';
 
 function App() {
   return (
@@ -14,16 +16,19 @@ function App() {
       <header className="App-header text-primary text-center">Title App</header>
       <div className="theMain border border-dark d-flex justify-content-between">
         <div className="screens">
-          <Screen />
+          <div className="basicScreen">
+            <Screen />
+            <DpsScreen />
+          </div>
           <div className="minionScreens">
-            <h2 className="text-center">Yours Army</h2>
             <ScreenMinionOne />
             <ScreenMinionTwo />
             <ScreenMinionThree />
+            <BonusScreen />
           </div>
         </div>
+
         <div className="shop">
-          <h2 className="text-center">Store</h2>
           <Shop />
         </div>
       </div>

@@ -6,6 +6,9 @@ import { GiParasaurolophus } from 'react-icons/gi';
 import { GiHydra } from 'react-icons/gi';
 import { GiMonsterGrasp } from 'react-icons/gi';
 import { GiPocketWatch } from 'react-icons/gi';
+import { GiBestialFangs } from 'react-icons/gi';
+import { GiFlamingClaw } from 'react-icons/gi';
+import { GiFrontTeeth } from 'react-icons/gi';
 
 const initialState = {
   production: {
@@ -117,12 +120,18 @@ const StyledParaBonus = styled('div')`
   color: white;
 `;
 
+const StyledDiv = styled('div')`
+  background: #eef0dd;
+  padding: 20px;
+`;
+
 const Shop = (props) => {
   const [items, setItems] = useState(initialState);
   return (
-    <div>
+    <StyledDiv>
+      <h1 className="titleFont text-center">St0re</h1>
       <ul>
-        <h3>Army</h3>
+        <h3 className="titleFont">Army</h3>
         <StyledThumbnail
           style={{
             background: '#333633',
@@ -217,7 +226,7 @@ const Shop = (props) => {
           <StyledCounter>{}00</StyledCounter>
         </StyledThumbnail>
       </ul>
-      <h3>Boost</h3>
+      <h3 className="titleFont">Boost</h3>
       <ul className="d-flex justify-content-between">
         <StyledBonus
           style={{
@@ -262,7 +271,7 @@ const Shop = (props) => {
           }}
         >
           <div>
-            <GiMonsterGrasp
+            <GiBestialFangs
               style={{
                 fontSize: 28,
                 color: '#B9D29F',
@@ -279,7 +288,6 @@ const Shop = (props) => {
                 }}
               />
             </div>
-
             <div className="w-100 d-flex flex-row justify-content-start ml-1">
               Price : {items.boost.middleBoost.price}
             </div>
@@ -294,10 +302,82 @@ const Shop = (props) => {
             </div>
           </StyledParaBonus>
         </StyledBonus>
-        <StyledBonus />
-        <StyledBonus />
+        <StyledBonus
+          style={{
+            background: '#7F5D5D',
+          }}
+        >
+          <div>
+            <GiFlamingClaw
+              style={{
+                fontSize: 28,
+                color: '#B9D29F',
+              }}
+            />
+          </div>
+          <StyledParaBonus>
+            <div className="w-100 d-flex flex-row justify-content-start ml-1">
+              Dps : {items.boost.superBoost.dps}
+              <RiKnifeBloodFill
+                style={{
+                  fontSize: 10,
+                  marginLeft: '8px',
+                }}
+              />
+            </div>
+            <div className="w-100 d-flex flex-row justify-content-start ml-1">
+              Price : {items.boost.superBoost.price}
+            </div>
+            <div className="w-100 d-flex flex-row justify-content-start ml-1">
+              time : {items.boost.superBoost.time}
+              <GiPocketWatch
+                style={{
+                  fontSize: 10,
+                  marginLeft: '11px',
+                }}
+              />
+            </div>
+          </StyledParaBonus>
+        </StyledBonus>
+        <StyledBonus
+          style={{
+            background: '#7F5D5D',
+          }}
+        >
+          <div>
+            <GiFrontTeeth
+              style={{
+                fontSize: 28,
+                color: '#B9D29F',
+              }}
+            />
+          </div>
+          <StyledParaBonus>
+            <div className="w-100 d-flex flex-row justify-content-start ml-1">
+              Dps : {items.boost.xtraBoost.dps}
+              <RiKnifeBloodFill
+                style={{
+                  fontSize: 10,
+                  marginLeft: '8px',
+                }}
+              />
+            </div>
+            <div className="w-100 d-flex flex-row justify-content-start ml-1">
+              Price : {items.boost.xtraBoost.price}
+            </div>
+            <div className="w-100 d-flex flex-row justify-content-start ml-1">
+              time : {items.boost.xtraBoost.time}
+              <GiPocketWatch
+                style={{
+                  fontSize: 10,
+                  marginLeft: '11px',
+                }}
+              />
+            </div>
+          </StyledParaBonus>
+        </StyledBonus>
       </ul>
-    </div>
+    </StyledDiv>
   );
 };
 export default Shop;

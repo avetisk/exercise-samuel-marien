@@ -3,7 +3,7 @@ import { GiParasaurolophus } from 'react-icons/gi';
 
 const StyledScreen = styled('div')`
   border-radius: 5px;
-  width: 400px;
+  width: 450px;
   height: 50px;
   display: flex;
   align-items: center;
