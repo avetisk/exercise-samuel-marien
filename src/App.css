@@ -4,17 +4,33 @@
   padding: 0;
 }
 
+.theMain {
+  background-color: #eef0dd;
+  border-radius: 20px;
+}
+
+.test {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.appTitle {
+  font-size: 5rem;
+  padding-bottom: 50px;
+  color: #5a785b;
+}
+
 .screens {
   display: flex;
   justify-content: center;
-  /* border: 1px solid red; */
+  align-items: flex-end;
+  padding-bottom: 35px;
   background-color: #eef0dd;
   width: 100%;
-  border-right: 1px solid black;
 }
 
 .minionScreens {
-  /* border: 1px solid blue; */
   margin-left: 15px;
   height: 310px;
   display: flex;

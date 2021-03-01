@@ -10,27 +10,35 @@ import Shop from './components/Shop';
 import DpsScreen from './components/DpsScreen';
 import BonusScreen from './components/BonusScreen';
 
+import { Provider } from './context/Context';
+
 function App() {
   return (
-    <div className="container m-auto border border-dark p-5">
-      <header className="App-header text-primary text-center">Title App</header>
-      <div className="theMain border border-dark d-flex justify-content-between">
-        <div className="screens">
-          <div className="basicScreen">
-            <Screen />
-            <DpsScreen />
-          </div>
-          <div className="minionScreens">
-            <ScreenMinionOne />
-            <ScreenMinionTwo />
-            <ScreenMinionThree />
-            <BonusScreen />
-          </div>
-        </div>
+    <div className="theMain container mt-5 p-5">
+      <div className="theMain d-flex justify-content-between">
+        <Provider>
+          <div className="test">
+            <h1 className="appTitle text-center font-weight-bold">
+              Kill the Hunters
+            </h1>
 
-        <div className="shop">
-          <Shop />
-        </div>
+            <div className="screens">
+              <div className="basicScreen">
+                <Screen />
+                <DpsScreen />
+              </div>
+              <div className="minionScreens">
+                <ScreenMinionOne />
+                <ScreenMinionTwo />
+                <ScreenMinionThree />
+                <BonusScreen />
+              </div>
+            </div>
+          </div>
+          <div className="shop border-dark border-left">
+            <Shop />
+          </div>
+        </Provider>
       </div>
     </div>
   );

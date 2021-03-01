@@ -1,6 +1,9 @@
 import styled from '@emotion/styled';
 import { GiCaveman } from 'react-icons/gi';
 
+import { useContext } from 'react';
+import Context from '../context/Context';
+
 const StyledScreen = styled('div')`
   border-radius: 15px 15px 5px 5px;
   width: 200px;
@@ -13,6 +16,7 @@ const StyledScreen = styled('div')`
   text-shadow: 2px 2px 2px #6c6e58;
   color: #47412d;
   transition: 0.9s;
+  cursor: pointer;
 
   &:hover {
     color: black;
@@ -21,9 +25,15 @@ const StyledScreen = styled('div')`
 `;
 
 const Screen = (props) => {
+  const { count, setCount } = useContext(Context);
+
+  const handleClick = () => {
+    setCount(count + 1);
+  };
+
   return (
     <div>
-      <StyledScreen>
+      <StyledScreen onClick={handleClick}>
         <GiCaveman
           style={{
             fontSize: 180,

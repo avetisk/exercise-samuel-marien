@@ -1,6 +1,9 @@
 import styled from '@emotion/styled';
 import { RiKnifeBloodFill } from 'react-icons/ri';
 
+import { useContext } from 'react';
+import Context from '../context/Context';
+
 const StyledScreen = styled('div')`
   // border: 1px solid black;
   border-radius: 5px;
@@ -31,10 +34,13 @@ const StyledPara = styled('p')`
 `;
 
 const DpsScreen = (props) => {
+  const { count } = useContext(Context);
+  const { dps } = useContext(Context);
+
   return (
     <StyledScreen>
       <StyledTitle>
-        8000{' '}
+        {count}
         <RiKnifeBloodFill
           style={{
             fontSize: 25,
@@ -42,7 +48,7 @@ const DpsScreen = (props) => {
         />
       </StyledTitle>
       <StyledPara>
-        125900{' '}
+        {dps}
         <RiKnifeBloodFill
           style={{
             fontSize: 15,

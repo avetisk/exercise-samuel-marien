@@ -10,6 +10,9 @@ import { GiBestialFangs } from 'react-icons/gi';
 import { GiFlamingClaw } from 'react-icons/gi';
 import { GiFrontTeeth } from 'react-icons/gi';
 
+import { useContext } from 'react';
+import Context from '../context/Context';
+
 const initialState = {
   production: {
     gecko: {
@@ -127,6 +130,54 @@ const StyledDiv = styled('div')`
 
 const Shop = (props) => {
   const [items, setItems] = useState(initialState);
+
+  const { gecko, setGecko } = useContext(Context);
+  const { parasauro, setParasauro } = useContext(Context);
+  const { hydra, setHydra } = useContext(Context);
+  const { boostCount, setboostCount } = useContext(Context);
+  const { dps, setDps } = useContext(Context);
+  const { count, setCount } = useContext(Context);
+
+  const Timer = (props) => {
+    const dpsUp = () => setCount((count) => count + props);
+    setInterval(dpsUp, 1000);
+  };
+
+  const handleClick = (event) => {
+    if (event.currentTarget.id === 'gecko') {
+      setGecko(gecko + 1);
+      setDps(dps + items.production.gecko.dps);
+      Timer(items.production.gecko.dps);
+      items.production.gecko.price = items.production.gecko.price * 2;
+    } else if (event.currentTarget.id === 'parasauro') {
+      setParasauro(parasauro + 1);
+      setDps(dps + items.production.parasauro.dps);
+      Timer(items.production.parasauro.dps);
+      items.production.parasauro.price = items.production.parasauro.price * 2;
+    } else {
+      setHydra(hydra + 1);
+      setDps(dps + items.production.hydra.dps);
+      Timer(items.production.hydra.dps);
+      items.production.hydra.price = items.production.hydra.price * 2;
+    }
+  };
+
+  const handleBoostClick = (event) => {
+    if (event.currentTarget.id === 'boost1') {
+      items.boost.miniBoost.price += items.boost.miniBoost.price * 2;
+      setboostCount(boostCount + 1);
+    } else if (event.currentTarget.id === 'boost2') {
+      items.boost.middleBoost.price += items.boost.middleBoost.price * 4;
+      setboostCount(boostCount + 1);
+    } else if (event.currentTarget.id === 'boost3') {
+      items.boost.superBoost.price += items.boost.superBoost.price * 6;
+      setboostCount(boostCount + 1);
+    } else {
+      items.boost.xtraBoost.price += items.boost.xtraBoost.price * 8;
+      setboostCount(boostCount + 1);
+    }
+  };
+
   return (
     <StyledDiv>
       <h1 className="titleFont text-center">St0re</h1>
@@ -136,6 +187,8 @@ const Shop = (props) => {
           style={{
             background: '#333633',
           }}
+          onClick={handleClick}
+          id="gecko"
         >
           <GiGecko
             style={{
@@ -161,12 +214,14 @@ const Shop = (props) => {
               />
             </StyledPara>
           </div>
-          <StyledCounter>{}00</StyledCounter>
+          <StyledCounter>{gecko}</StyledCounter>
         </StyledThumbnail>
         <StyledThumbnail
           style={{
             background: '#333633',
           }}
+          onClick={handleClick}
+          id="parasauro"
         >
           <GiParasaurolophus
             style={{
@@ -192,12 +247,14 @@ const Shop = (props) => {
               />
             </StyledPara>
           </div>
-          <StyledCounter>{}00</StyledCounter>
+          <StyledCounter>{parasauro}</StyledCounter>
         </StyledThumbnail>
         <StyledThumbnail
           style={{
             background: '#333633',
           }}
+          onClick={handleClick}
+          id="hydra"
         >
           <GiHydra
             style={{
@@ -223,15 +280,17 @@ const Shop = (props) => {
               />
             </StyledPara>
           </div>
-          <StyledCounter>{}00</StyledCounter>
+          <StyledCounter>{hydra}</StyledCounter>
         </StyledThumbnail>
       </ul>
-      <h3 className="titleFont">Boost</h3>
+      <h3 className="titleFont">Boost({boostCount})</h3>
       <ul className="d-flex justify-content-between">
         <StyledBonus
           style={{
             background: '#7F5D5D',
           }}
+          onClick={handleBoostClick}
+          id="boost1"
         >
           <div>
             <GiMonsterGrasp
@@ -251,6 +310,7 @@ const Shop = (props) => {
                 }}
               />
             </div>
+
             <div className="w-100 d-flex flex-row justify-content-start ml-1">
               Price : {items.boost.miniBoost.price}
             </div>
@@ -269,6 +329,8 @@ const Shop = (props) => {
           style={{
             background: '#7F5D5D',
           }}
+          onClick={handleBoostClick}
+          id="boost2"
         >
           <div>
             <GiBestialFangs
@@ -306,6 +368,8 @@ const Shop = (props) => {
           style={{
             background: '#7F5D5D',
           }}
+          onClick={handleBoostClick}
+          id="boost3"
         >
           <div>
             <GiFlamingClaw
@@ -343,6 +407,8 @@ const Shop = (props) => {
           style={{
             background: '#7F5D5D',
           }}
+          onClick={handleBoostClick}
+          id="boost4"
         >
           <div>
             <GiFrontTeeth
