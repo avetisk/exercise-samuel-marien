@@ -15,7 +15,7 @@ import { Provider } from './context/Context';
 function App() {
   return (
     <div className="theMain container mt-5 p-5">
-      <div className="theMain d-flex justify-content-between">
+      <div className="d-flex justify-content-between">
         <Provider>
           <div className="test">
             <h1 className="appTitle text-center font-weight-bold">

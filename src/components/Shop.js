@@ -1,5 +1,7 @@
 import styled from '@emotion/styled';
+
 import { useState } from 'react';
+
 import { GiGecko } from 'react-icons/gi';
 import { RiKnifeBloodFill } from 'react-icons/ri';
 import { GiParasaurolophus } from 'react-icons/gi';
@@ -17,17 +19,17 @@ const initialState = {
   production: {
     gecko: {
       count: 0,
-      price: 1,
+      price: 10,
       dps: 1,
     },
     parasauro: {
       count: 0,
-      price: 10,
+      price: 50,
       dps: 5,
     },
     hydra: {
       count: 0,
-      price: 30,
+      price: 300,
       dps: 10,
     },
   },
@@ -124,7 +126,6 @@ const StyledParaBonus = styled('div')`
 `;
 
 const StyledDiv = styled('div')`
-  background: #eef0dd;
   padding: 20px;
 `;
 
@@ -137,28 +138,67 @@ const Shop = (props) => {
   const { boostCount, setboostCount } = useContext(Context);
   const { dps, setDps } = useContext(Context);
   const { count, setCount } = useContext(Context);
+  const { displayGecko, setDisplayGecko } = useContext(Context);
+  const { displayParasauro, setDisplayParasauro } = useContext(Context);
+  const { displayHydra, setDisplayHydra } = useContext(Context);
 
-  const Timer = (props) => {
-    const dpsUp = () => setCount((count) => count + props);
-    setInterval(dpsUp, 1000);
+  const CountTimer = (props) => {
+    const countUp = () => setCount((count) => count + props);
+    setInterval(countUp, 1000);
   };
 
   const handleClick = (event) => {
     if (event.currentTarget.id === 'gecko') {
+      if (count < items.production.gecko.price) {
+        return;
+      }
       setGecko(gecko + 1);
+      setDisplayGecko([
+        ...displayGecko,
+        <GiGecko
+          style={{
+            fontSize: 35,
+          }}
+        />,
+      ]);
       setDps(dps + items.production.gecko.dps);
-      Timer(items.production.gecko.dps);
+      setCount(count - items.production.gecko.price);
+      CountTimer(items.production.gecko.dps);
       items.production.gecko.price = items.production.gecko.price * 2;
     } else if (event.currentTarget.id === 'parasauro') {
+      if (count < items.production.parasauro.price) {
+        return;
+      }
       setParasauro(parasauro + 1);
+      setDisplayParasauro([
+        ...displayParasauro,
+        <GiParasaurolophus
+          style={{
+            fontSize: 35,
+          }}
+        />,
+      ]);
       setDps(dps + items.production.parasauro.dps);
-      Timer(items.production.parasauro.dps);
-      items.production.parasauro.price = items.production.parasauro.price * 2;
+      setCount(count - items.production.parasauro.price);
+      CountTimer(items.production.parasauro.dps);
+      items.production.parasauro.price = items.production.parasauro.price * 4;
     } else {
+      if (count < items.production.hydra.price) {
+        return;
+      }
       setHydra(hydra + 1);
+      setDisplayHydra([
+        ...displayHydra,
+        <GiHydra
+          style={{
+            fontSize: 35,
+          }}
+        />,
+      ]);
       setDps(dps + items.production.hydra.dps);
-      Timer(items.production.hydra.dps);
-      items.production.hydra.price = items.production.hydra.price * 2;
+      setCount(count - items.production.hydra.price);
+      CountTimer(items.production.hydra.dps);
+      items.production.hydra.price = items.production.hydra.price * 6;
     }
   };
 
@@ -205,7 +245,7 @@ const Shop = (props) => {
           >
             <StyledTitle>Gecko</StyledTitle>
             <StyledPara>
-              Yours next Gecko: {items.production.gecko.price}
+              Next Gecko: {items.production.gecko.price}
               <RiKnifeBloodFill
                 style={{
                   fontSize: 15,
@@ -238,7 +278,7 @@ const Shop = (props) => {
           >
             <StyledTitle>Parasauro</StyledTitle>
             <StyledPara>
-              Yours next Parasauro: {items.production.parasauro.price}
+              Next Parasauro: {items.production.parasauro.price}
               <RiKnifeBloodFill
                 style={{
                   fontSize: 15,
@@ -271,7 +311,7 @@ const Shop = (props) => {
           >
             <StyledTitle>Hydra</StyledTitle>
             <StyledPara>
-              Yours next Hydra: {items.production.hydra.price}
+              Next Hydra: {items.production.hydra.price}
               <RiKnifeBloodFill
                 style={{
                   fontSize: 15,
@@ -303,12 +343,7 @@ const Shop = (props) => {
           <StyledParaBonus>
             <div className="w-100 d-flex flex-row justify-content-start ml-1">
               Dps : {items.boost.miniBoost.dps}
-              <RiKnifeBloodFill
-                style={{
-                  fontSize: 10,
-                  marginLeft: '12px',
-                }}
-              />
+              <RiKnifeBloodFill style={{ fontSize: 10, marginLeft: '12px' }} />
             </div>
 
             <div className="w-100 d-flex flex-row justify-content-start ml-1">

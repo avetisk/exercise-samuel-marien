@@ -1,5 +1,7 @@
 import styled from '@emotion/styled';
-import { GiGecko } from 'react-icons/gi';
+
+import { useContext } from 'react';
+import Context from '../context/Context';
 
 const StyledScreen = styled('div')`
   border-radius: 5px;
@@ -19,16 +21,12 @@ const StyledScreen = styled('div')`
   }
 `;
 
-const ScreenMinionOne = (props) => {
+const ScreenMinionOne = (props, children) => {
+  const { displayGecko } = useContext(Context);
+
   return (
     <div>
-      <StyledScreen className="p-2">
-        <GiGecko
-          style={{
-            fontSize: 35,
-          }}
-        />
-      </StyledScreen>
+      <StyledScreen className="p-2">{displayGecko}</StyledScreen>
     </div>
   );
 };
