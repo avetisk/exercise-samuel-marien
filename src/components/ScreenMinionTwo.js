@@ -1,5 +1,7 @@
 import styled from '@emotion/styled';
 
+import { GiParasaurolophus } from 'react-icons/gi';
+
 import { useContext } from 'react';
 import Context from '../context/Context';
 
@@ -25,7 +27,13 @@ const ScreenMinionTwo = (props) => {
   const { displayParasauro } = useContext(Context);
   return (
     <div>
-      <StyledScreen className="p-2">{displayParasauro}</StyledScreen>
+      <StyledScreen className="p-2">
+        {displayParasauro.length === 0 ? (
+          <GiParasaurolophus style={{ fontSize: 35, opacity: '30%' }} />
+        ) : (
+          displayParasauro
+        )}
+      </StyledScreen>
     </div>
   );
 };

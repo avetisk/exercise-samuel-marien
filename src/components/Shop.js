@@ -141,6 +141,7 @@ const Shop = (props) => {
   const { displayGecko, setDisplayGecko } = useContext(Context);
   const { displayParasauro, setDisplayParasauro } = useContext(Context);
   const { displayHydra, setDisplayHydra } = useContext(Context);
+  const { displayMiniBoost, setDisplayMiniBoost } = useContext(Context);
 
   const CountTimer = (props) => {
     const countUp = () => setCount((count) => count + props);
@@ -164,7 +165,9 @@ const Shop = (props) => {
       setDps(dps + items.production.gecko.dps);
       setCount(count - items.production.gecko.price);
       CountTimer(items.production.gecko.dps);
-      items.production.gecko.price = items.production.gecko.price * 2;
+      items.production.gecko.price = Math.floor(
+        items.production.gecko.price * 1.2
+      );
     } else if (event.currentTarget.id === 'parasauro') {
       if (count < items.production.parasauro.price) {
         return;
@@ -181,7 +184,9 @@ const Shop = (props) => {
       setDps(dps + items.production.parasauro.dps);
       setCount(count - items.production.parasauro.price);
       CountTimer(items.production.parasauro.dps);
-      items.production.parasauro.price = items.production.parasauro.price * 4;
+      items.production.parasauro.price = Math.floor(
+        items.production.parasauro.price * 1.5
+      );
     } else {
       if (count < items.production.hydra.price) {
         return;
@@ -198,7 +203,9 @@ const Shop = (props) => {
       setDps(dps + items.production.hydra.dps);
       setCount(count - items.production.hydra.price);
       CountTimer(items.production.hydra.dps);
-      items.production.hydra.price = items.production.hydra.price * 6;
+      items.production.hydra.price = Math.floor(
+        items.production.hydra.price * 2
+      );
     }
   };
 
@@ -206,6 +213,7 @@ const Shop = (props) => {
     if (event.currentTarget.id === 'boost1') {
       items.boost.miniBoost.price += items.boost.miniBoost.price * 2;
       setboostCount(boostCount + 1);
+      setDisplayMiniBoost((displayMiniBoost) => (displayMiniBoost = true));
     } else if (event.currentTarget.id === 'boost2') {
       items.boost.middleBoost.price += items.boost.middleBoost.price * 4;
       setboostCount(boostCount + 1);

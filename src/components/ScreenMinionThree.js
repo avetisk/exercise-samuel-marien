@@ -1,5 +1,7 @@
 import styled from '@emotion/styled';
 
+import { GiHydra } from 'react-icons/gi';
+
 import { useContext } from 'react';
 import Context from '../context/Context';
 
@@ -23,15 +25,15 @@ const StyledScreen = styled('div')`
 
 const ScreenMinionTwo = (props) => {
   const { displayHydra } = useContext(Context);
+
   return (
     <div>
       <StyledScreen className="p-2">
-        {/* <GiHydra
-          style={{
-            fontSize: 35,
-          }}
-        /> */}
-        {displayHydra}
+        {displayHydra.length === 0 ? (
+          <GiHydra style={{ fontSize: 35, opacity: '30%' }} />
+        ) : (
+          displayHydra
+        )}
       </StyledScreen>
     </div>
   );

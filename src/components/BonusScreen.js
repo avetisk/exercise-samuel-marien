@@ -1,4 +1,8 @@
 import styled from '@emotion/styled';
+
+import { useContext } from 'react';
+import Context from '../context/Context';
+
 import { GiMonsterGrasp } from 'react-icons/gi';
 import { GiBestialFangs } from 'react-icons/gi';
 import { GiFlamingClaw } from 'react-icons/gi';
@@ -25,22 +29,70 @@ const StyledBtn = styled('h1')`
   align-items: center;
   justify-content: flex-start;
 
-  & :nth-of-type(1) {
-    opacity: 0.3;
-  }
+  // & :nth-of-type(1) {
+  //   opacity: 0.3;
+  // }
 `;
 
 const BonusScreen = (props) => {
+  const { displayMiniBoost } = useContext(Context);
   return (
     <StyledDiv>
       <StyledBtn>
-        <GiMonsterGrasp
-          style={{
-            fontSize: 50,
-            color: '#47412d',
-          }}
-        />
-        <div className="d-flex justify-content-between align-items-start w-75">
+        {displayMiniBoost ? (
+          <div>
+            <GiMonsterGrasp
+              style={{
+                fontSize: 50,
+                color: '#47412d',
+                opacity: '100%',
+              }}
+            />
+            <div className="d-flex justify-content-between align-items-between w-100">
+              <p
+                className="h3"
+                style={{
+                  opacity: '100%',
+                }}
+              >
+                5
+              </p>
+              <GiPocketWatch
+                style={{
+                  fontSize: 30,
+                  opacity: '100%',
+                }}
+              />
+            </div>
+          </div>
+        ) : (
+          <div>
+            <GiMonsterGrasp
+              style={{
+                fontSize: 50,
+                color: '#47412d',
+                opacity: '10%',
+              }}
+            />
+            <div className="d-flex justify-content-between align-items-between w-100">
+              <p
+                className="h3"
+                style={{
+                  opacity: '10%',
+                }}
+              >
+                5
+              </p>
+              <GiPocketWatch
+                style={{
+                  fontSize: 30,
+                  opacity: '10%',
+                }}
+              />
+            </div>
+          </div>
+        )}
+        {/* <div className="d-flex justify-content-between align-items-start w-75">
           <p className="h3">5</p>
 
           <GiPocketWatch
@@ -48,7 +100,7 @@ const BonusScreen = (props) => {
               fontSize: 30,
             }}
           />
-        </div>
+        </div> */}
       </StyledBtn>
       <StyledBtn>
         <GiBestialFangs
