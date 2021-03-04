@@ -1,7 +1,5 @@
 import { createContext, useState } from 'react';
 
-import { GiMonsterGrasp } from 'react-icons/gi';
-
 export const Provider = (props) => {
   const [count, setCount] = useState(9000);
   const [gecko, setGecko] = useState(0);
@@ -13,6 +11,10 @@ export const Provider = (props) => {
   const [displayParasauro, setDisplayParasauro] = useState([]);
   const [displayHydra, setDisplayHydra] = useState([]);
   const [displayMiniBoost, setDisplayMiniBoost] = useState(false);
+  const [displayMiddleBoost, setDisplayMiddleBoost] = useState(false);
+  const [displaySuperBoost, setDisplaySuperBoost] = useState(false);
+  const [displayXtraBoost, setDisplayXtraBoost] = useState(false);
+  const [miniBoostCounter, setMiniBoostCounter] = useState(0);
 
   return (
     <Context.Provider
@@ -38,6 +40,14 @@ export const Provider = (props) => {
         setDisplayHydra,
         displayMiniBoost,
         setDisplayMiniBoost,
+        displayMiddleBoost,
+        setDisplayMiddleBoost,
+        displaySuperBoost,
+        setDisplaySuperBoost,
+        displayXtraBoost,
+        setDisplayXtraBoost,
+        miniBoostCounter,
+        setMiniBoostCounter,
       }}
     />
   );

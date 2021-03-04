@@ -15,7 +15,7 @@ import { GiFrontTeeth } from 'react-icons/gi';
 import { useContext } from 'react';
 import Context from '../context/Context';
 
-const initialState = {
+export const InitialState = {
   production: {
     gecko: {
       count: 0,
@@ -36,27 +36,27 @@ const initialState = {
   boost: {
     miniBoost: {
       count: 0,
-      price: 10,
+      price: 5,
       dps: 1,
-      time: 5,
+      time: 7,
     },
     middleBoost: {
       count: 0,
-      price: 100,
-      dps: 5,
-      time: 5,
+      price: 10,
+      dps: 1,
+      time: 15,
     },
     superBoost: {
       count: 0,
-      price: 300,
-      dps: 20,
-      time: 7,
+      price: 50,
+      dps: 5,
+      time: 15,
     },
     xtraBoost: {
       count: 0,
-      price: 1000,
-      dps: 60,
-      time: 12,
+      price: 100,
+      dps: 10,
+      time: 15,
     },
   },
 };
@@ -130,7 +130,7 @@ const StyledDiv = styled('div')`
 `;
 
 const Shop = (props) => {
-  const [items, setItems] = useState(initialState);
+  const [items] = useState(InitialState);
 
   const { gecko, setGecko } = useContext(Context);
   const { parasauro, setParasauro } = useContext(Context);
@@ -141,11 +141,30 @@ const Shop = (props) => {
   const { displayGecko, setDisplayGecko } = useContext(Context);
   const { displayParasauro, setDisplayParasauro } = useContext(Context);
   const { displayHydra, setDisplayHydra } = useContext(Context);
-  const { displayMiniBoost, setDisplayMiniBoost } = useContext(Context);
+  const { setDisplayMiniBoost } = useContext(Context);
+  const { setDisplayMiddleBoost } = useContext(Context);
+  const { setDisplaySuperBoost } = useContext(Context);
+  const { setDisplayXtraBoost } = useContext(Context);
+  const { miniBoostCounter, setMiniBoostCounter } = useContext(Context);
 
   const CountTimer = (props) => {
     const countUp = () => setCount((count) => count + props);
     setInterval(countUp, 1000);
+  };
+
+  const bonusCdTimer = (props) => {
+    let IntervalId = null;
+    setMiniBoostCounter(miniBoostCounter + props);
+    const bonusCountDown = () =>
+      setMiniBoostCounter((time) => {
+        if (time > 0) {
+          return time - 1;
+        } else {
+          setMiniBoostCounter(props);
+          clearInterval(IntervalId);
+        }
+      });
+    IntervalId = setInterval(bonusCountDown, 1000);
   };
 
   const handleClick = (event) => {
@@ -214,15 +233,22 @@ const Shop = (props) => {
       items.boost.miniBoost.price += items.boost.miniBoost.price * 2;
       setboostCount(boostCount + 1);
       setDisplayMiniBoost((displayMiniBoost) => (displayMiniBoost = true));
+      bonusCdTimer(items.boost.miniBoost.time);
+      console.log(InitialState.boost);
     } else if (event.currentTarget.id === 'boost2') {
-      items.boost.middleBoost.price += items.boost.middleBoost.price * 4;
+      items.boost.middleBoost.price += items.boost.middleBoost.price * 2;
       setboostCount(boostCount + 1);
+      setDisplayMiddleBoost(
+        (displayMiddleBoost) => (displayMiddleBoost = true)
+      );
     } else if (event.currentTarget.id === 'boost3') {
-      items.boost.superBoost.price += items.boost.superBoost.price * 6;
+      items.boost.superBoost.price += items.boost.superBoost.price * 2;
       setboostCount(boostCount + 1);
+      setDisplaySuperBoost((displaySuperBoost) => (displaySuperBoost = true));
     } else {
-      items.boost.xtraBoost.price += items.boost.xtraBoost.price * 8;
+      items.boost.xtraBoost.price += items.boost.xtraBoost.price * 2;
       setboostCount(boostCount + 1);
+      setDisplayXtraBoost((displayXtraBoost) => (displayXtraBoost = true));
     }
   };
 

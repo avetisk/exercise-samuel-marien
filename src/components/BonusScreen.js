@@ -1,5 +1,7 @@
 import styled from '@emotion/styled';
 
+import { InitialState } from './Shop';
+
 import { useContext } from 'react';
 import Context from '../context/Context';
 
@@ -28,34 +30,26 @@ const StyledBtn = styled('h1')`
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-
-  // & :nth-of-type(1) {
-  //   opacity: 0.3;
-  // }
 `;
 
 const BonusScreen = (props) => {
   const { displayMiniBoost } = useContext(Context);
+  const { displayMiddleBoost } = useContext(Context);
+  const { displaySuperBoost } = useContext(Context);
+  const { displayXtraBoost } = useContext(Context);
+  const { miniBoostCounter } = useContext(Context);
+
   return (
     <StyledDiv>
       <StyledBtn>
         {displayMiniBoost ? (
           <div>
             <GiMonsterGrasp
-              style={{
-                fontSize: 50,
-                color: '#47412d',
-                opacity: '100%',
-              }}
+              style={{ fontSize: 50, color: '#47412d', opacity: '100%' }}
             />
             <div className="d-flex justify-content-between align-items-between w-100">
-              <p
-                className="h3"
-                style={{
-                  opacity: '100%',
-                }}
-              >
-                5
+              <p className="h3" style={{ opacity: '100%' }}>
+                {miniBoostCounter}
               </p>
               <GiPocketWatch
                 style={{
@@ -81,6 +75,61 @@ const BonusScreen = (props) => {
                   opacity: '10%',
                 }}
               >
+                {InitialState.boost.miniBoost.time}
+              </p>
+              <GiPocketWatch
+                style={{
+                  fontSize: 30,
+                  opacity: '10%',
+                }}
+              />
+            </div>
+          </div>
+        )}
+      </StyledBtn>
+      <StyledBtn>
+        {displayMiddleBoost ? (
+          <div>
+            <GiBestialFangs
+              style={{
+                fontSize: 50,
+                color: '#47412d',
+                opacity: '100%',
+              }}
+            />
+            <div className="d-flex justify-content-between align-items-between w-100">
+              <p
+                className="h3"
+                style={{
+                  opacity: '100%',
+                }}
+              >
+                {}
+              </p>
+              <GiPocketWatch
+                style={{
+                  fontSize: 30,
+                  opacity: '100%',
+                }}
+              />
+            </div>
+          </div>
+        ) : (
+          <div>
+            <GiBestialFangs
+              style={{
+                fontSize: 50,
+                color: '#47412d',
+                opacity: '10%',
+              }}
+            />
+            <div className="d-flex justify-content-between align-items-between w-100">
+              <p
+                className="h3"
+                style={{
+                  opacity: '10%',
+                }}
+              >
                 5
               </p>
               <GiPocketWatch
@@ -92,66 +141,116 @@ const BonusScreen = (props) => {
             </div>
           </div>
         )}
-        {/* <div className="d-flex justify-content-between align-items-start w-75">
-          <p className="h3">5</p>
-
-          <GiPocketWatch
-            style={{
-              fontSize: 30,
-            }}
-          />
-        </div> */}
       </StyledBtn>
       <StyledBtn>
-        <GiBestialFangs
-          style={{
-            fontSize: 50,
-            color: '#47412d',
-          }}
-        />
-        <div className="d-flex justify-content-between align-items-start w-75">
-          <p className="h3">5</p>
-
-          <GiPocketWatch
-            style={{
-              fontSize: 30,
-            }}
-          />
-        </div>
+        {displaySuperBoost ? (
+          <div>
+            <GiFlamingClaw
+              style={{
+                fontSize: 50,
+                color: '#47412d',
+                opacity: '100%',
+              }}
+            />
+            <div className="d-flex justify-content-between align-items-between w-100">
+              <p
+                className="h3"
+                style={{
+                  opacity: '100%',
+                }}
+              >
+                {}
+              </p>
+              <GiPocketWatch
+                style={{
+                  fontSize: 30,
+                  opacity: '100%',
+                }}
+              />
+            </div>
+          </div>
+        ) : (
+          <div>
+            <GiFlamingClaw
+              style={{
+                fontSize: 50,
+                color: '#47412d',
+                opacity: '10%',
+              }}
+            />
+            <div className="d-flex justify-content-between align-items-between w-100">
+              <p
+                className="h3"
+                style={{
+                  opacity: '10%',
+                }}
+              >
+                5
+              </p>
+              <GiPocketWatch
+                style={{
+                  fontSize: 30,
+                  opacity: '10%',
+                }}
+              />
+            </div>
+          </div>
+        )}
       </StyledBtn>
       <StyledBtn>
-        <GiFlamingClaw
-          style={{
-            fontSize: 50,
-            color: '#47412d',
-          }}
-        />
-        <div className="d-flex justify-content-between align-items-start w-75">
-          <p className="h3">7</p>
-
-          <GiPocketWatch
-            style={{
-              fontSize: 30,
-            }}
-          />
-        </div>
-      </StyledBtn>
-      <StyledBtn>
-        <GiFrontTeeth
-          style={{
-            fontSize: 50,
-            color: '#47412d',
-          }}
-        />
-        <div className="d-flex justify-content-between align-items-start w-75">
-          <p className="h3">12</p>
-
-          <GiPocketWatch
-            style={{
-              fontSize: 30,
-            }}
-          />
-        </div>
+        {displayXtraBoost ? (
+          <div>
+            <GiFrontTeeth
+              style={{
+                fontSize: 50,
+                color: '#47412d',
+                opacity: '100%',
+              }}
+            />
+            <div className="d-flex justify-content-between align-items-between w-100">
+              <p
+                className="h3"
+                style={{
+                  opacity: '100%',
+                }}
+              >
+                {}
+              </p>
+              <GiPocketWatch
+                style={{
+                  fontSize: 30,
+                  opacity: '100%',
+                }}
+              />
+            </div>
+          </div>
+        ) : (
+          <div>
+            <GiFrontTeeth
+              style={{
+                fontSize: 50,
+                color: '#47412d',
+                opacity: '10%',
+              }}
+            />
+            <div className="d-flex justify-content-between align-items-between w-100">
+              <p
+                className="h3"
+                style={{
+                  opacity: '10%',
+                }}
+              >
+                5
+              </p>
+              <GiPocketWatch
+                style={{
+                  fontSize: 30,
+                  opacity: '10%',
+                }}
+              />
+            </div>
+          </div>
+        )}
       </StyledBtn>
     </StyledDiv>
   );
