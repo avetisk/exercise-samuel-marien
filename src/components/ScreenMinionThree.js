@@ -1,13 +1,11 @@
-import styled from '@emotion/styled';
+import styled from "@emotion/styled";
 
-import { GiHydra } from 'react-icons/gi';
+import { GiHydra } from "react-icons/gi";
 
-import { useContext } from 'react';
-import Context from '../context/Context';
+import { useContext } from "react";
+import Context from "../context/Context";
 
-const StyledScreen = styled('div')`
-  border-radius: 5px;
-  width: 450px;
+const StyledScreen = styled("div")`
   height: 50px;
   display: flex;
   align-items: center;
@@ -28,9 +26,9 @@ const ScreenMinionTwo = (props) => {
 
   return (
     <div>
-      <StyledScreen className="p-2">
+      <StyledScreen className="p-2 rounded">
         {displayHydra.length === 0 ? (
-          <GiHydra style={{ fontSize: 35, opacity: '30%' }} />
+          <GiHydra style={{ fontSize: 35, opacity: "30%" }} />
         ) : (
           displayHydra
         )}
